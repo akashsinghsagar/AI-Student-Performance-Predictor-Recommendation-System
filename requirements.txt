@@ -1,0 +1,14 @@
+fastapi==0.115.11
+uvicorn==0.34.0
+pandas==2.2.3
+scikit-learn==1.6.1
+joblib==1.4.2
+transformers==4.49.0
+torch==2.6.0
+streamlit==1.43.2
+requests==2.32.3
+matplotlib==3.10.1
+python-multipart==0.0.20
+pytest==8.3.5
+openpyxl==3.1.5
+python-dotenv==1.0.1

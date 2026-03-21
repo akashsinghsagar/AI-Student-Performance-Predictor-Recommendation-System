@@ -1,0 +1,23 @@
+version: "3.9"
+
+services:
+  api:
+    build: .
+    container_name: spprs-api
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./:/app
+
+  streamlit:
+    build: .
+    container_name: spprs-streamlit
+    command: ["streamlit", "run", "app.py", "--server.address=0.0.0.0", "--server.port=8501"]
+    ports:
+      - "8501:8501"
+    environment:
+      - API_URL=http://api:8000
+    depends_on:
+      - api
+    volumes:
+      - ./:/app
