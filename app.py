@@ -248,10 +248,38 @@ st.markdown(
         --blue-light: #bae6fd;
         --text-main: #0f172a;
         --text-soft: #334155;
+        --panel-border: #dbeafe;
+        --panel-shadow: rgba(14, 165, 233, 0.10);
+    }
+
+    html[data-theme="dark"] {
+        --bg-soft: #0b1220;
+        --bg-white: #0f172a;
+        --blue-strong: #60a5fa;
+        --blue-mid: #38bdf8;
+        --blue-light: #1b3b75;
+        --text-main: #e5e7eb;
+        --text-soft: #cbd5e1;
+        --panel-border: #2b3d5a;
+        --panel-shadow: rgba(0, 0, 0, 0.35);
+    }
+
+    @media (prefers-color-scheme: dark) {
+        :root {
+            --bg-soft: #0b1220;
+            --bg-white: #0f172a;
+            --blue-strong: #60a5fa;
+            --blue-mid: #38bdf8;
+            --blue-light: #1b3b75;
+            --text-main: #e5e7eb;
+            --text-soft: #cbd5e1;
+            --panel-border: #2b3d5a;
+            --panel-shadow: rgba(0, 0, 0, 0.35);
+        }
     }
 
     .stApp {
-        background: radial-gradient(circle at 0% 0%, #e0f2fe 0%, #f8fcff 40%, #ffffff 100%);
+        background: radial-gradient(circle at 0% 0%, var(--blue-light) 0%, var(--bg-soft) 35%, var(--bg-white) 100%);
     }
 
     [data-testid="stAppViewContainer"] .main {
@@ -294,20 +322,134 @@ st.markdown(
     }
 
     [data-testid="stSidebar"] {
-        background: linear-gradient(180deg, #f0f9ff 0%, #ffffff 80%);
-        border-right: 1px solid #dbeafe;
+        background: linear-gradient(180deg, var(--bg-soft) 0%, var(--bg-white) 80%);
+        border-right: 1px solid var(--panel-border);
+    }
+
+    [data-testid="stSidebar"] hr {
+        border-color: var(--panel-border) !important;
+    }
+
+    [data-testid="stSidebar"] h1,
+    [data-testid="stSidebar"] h2,
+    [data-testid="stSidebar"] h3,
+    [data-testid="stSidebar"] p,
+    [data-testid="stSidebar"] label,
+    [data-testid="stSidebar"] span,
+    [data-testid="stSidebar"] li {
+        color: var(--text-main) !important;
+    }
+
+    [data-testid="stSidebar"] a {
+        color: var(--blue-strong) !important;
+    }
+
+    [data-testid="stSidebar"] [role="radiogroup"] label {
+        color: var(--text-main) !important;
+    }
+
+    input[type="radio"] {
+        accent-color: var(--blue-mid) !important;
+    }
+
+    [data-testid="stSidebar"] [data-testid="stFileUploaderDropzone"] {
+        background: color-mix(in srgb, var(--bg-white) 92%, transparent) !important;
+        border: 1px solid var(--panel-border) !important;
+        border-radius: 10px !important;
+    }
+
+    [data-testid="stSidebar"] [data-testid="stFileUploaderDropzoneInstructions"] * {
+        color: var(--text-soft) !important;
+    }
+
+    [data-testid="stSidebar"] [data-testid="stBaseButton-secondary"] {
+        background: linear-gradient(90deg, var(--blue-mid), var(--blue-strong)) !important;
+        color: #ffffff !important;
+        border: none !important;
+        border-radius: 9px !important;
+    }
+
+    /* Remove harsh black top strip in dark mode and blend with dashboard palette */
+    header[data-testid="stHeader"] {
+        background: linear-gradient(90deg, #0f172a, #16263f) !important;
+        border-bottom: 1px solid var(--panel-border) !important;
+    }
+
+    [data-testid="stToolbar"] {
+        background: transparent !important;
+    }
+
+    [data-testid="stToolbar"] button,
+    [data-testid="stToolbar"] [role="button"] {
+        color: var(--text-main) !important;
+        background: color-mix(in srgb, var(--bg-white) 88%, transparent) !important;
+        border: 1px solid var(--panel-border) !important;
+        border-radius: 8px !important;
+    }
+
+    /* Theme the top-right settings popover (System/Light/Dark menu) */
+    [data-baseweb="popover"] {
+        z-index: 9999;
+    }
+
+    [data-baseweb="popover"] > div,
+    [data-baseweb="popover"] [role="dialog"] {
+        background: color-mix(in srgb, var(--bg-white) 96%, transparent) !important;
+        border: 1px solid var(--panel-border) !important;
+        border-radius: 12px !important;
+        box-shadow: 0 14px 30px var(--panel-shadow) !important;
+    }
+
+    [data-baseweb="popover"] * {
+        color: var(--text-main) !important;
+    }
+
+    [data-baseweb="popover"] hr {
+        border-color: var(--panel-border) !important;
+    }
+
+    [data-baseweb="popover"] [data-baseweb="button-group"] {
+        background: color-mix(in srgb, var(--bg-soft) 90%, transparent) !important;
+        border: 1px solid var(--panel-border) !important;
+        border-radius: 10px !important;
+        padding: 3px !important;
+    }
+
+    [data-baseweb="popover"] [data-baseweb="button-group"] button {
+        background: transparent !important;
+        color: var(--text-soft) !important;
+        border: none !important;
+        border-radius: 8px !important;
+    }
+
+    [data-baseweb="popover"] [data-baseweb="button-group"] button[aria-pressed="true"] {
+        background: linear-gradient(90deg, var(--blue-mid), var(--blue-strong)) !important;
+        color: #ffffff !important;
+    }
+
+    .stApp [data-testid="stStatusWidget"],
+    .stApp [data-testid="stNotification"],
+    .stApp [data-testid="stAlert"] {
+        border: 1px solid var(--panel-border) !important;
+        background: color-mix(in srgb, var(--bg-white) 92%, transparent) !important;
     }
 
     div[data-testid="stMetric"] {
         background: var(--bg-white);
-        border: 1px solid #dbeafe;
+        border: 1px solid var(--panel-border);
         border-radius: 12px;
         padding: 0.5rem;
-        box-shadow: 0 8px 18px rgba(14, 165, 233, 0.08);
+        box-shadow: 0 8px 18px var(--panel-shadow);
+    }
+
+    div[data-testid="stMetric"] label,
+    div[data-testid="stMetric"] [data-testid="stMetricLabel"],
+    div[data-testid="stMetric"] [data-testid="stMetricValue"] {
+        color: var(--text-main);
     }
 
     .stButton > button {
-        background: linear-gradient(90deg, #0ea5e9, #2563eb);
+        background: linear-gradient(90deg, var(--blue-mid), var(--blue-strong));
         color: white;
         border: none;
         border-radius: 10px;
@@ -322,10 +464,56 @@ st.markdown(
     }
 
     div[data-testid="stDataFrame"] {
-        border: 1px solid #dbeafe;
+        border: 1px solid var(--panel-border);
         border-radius: 12px;
         overflow: hidden;
-        box-shadow: 0 10px 18px rgba(14, 165, 233, 0.08);
+        box-shadow: 0 10px 18px var(--panel-shadow);
+    }
+
+    h1, h2, h3, h4, h5, h6, p, label, span {
+        color: var(--text-main);
+    }
+
+    .stApp,
+    .stApp p,
+    .stApp label,
+    .stApp li,
+    .stApp [data-testid="stMarkdownContainer"],
+    .stApp [data-testid="stRadio"] label,
+    .stApp [data-testid="stFileUploader"] label,
+    .stApp [data-testid="stSelectbox"] label,
+    .stApp [data-testid="stTextInput"] label,
+    .stApp [data-testid="stMultiSelect"] label,
+    .stApp [data-testid="stExpander"] label,
+    .stApp [data-baseweb="select"] * {
+        color: var(--text-main) !important;
+    }
+
+    .stApp [data-baseweb="select"] > div,
+    .stApp input,
+    .stApp textarea {
+        background: var(--bg-white) !important;
+        border-color: var(--panel-border) !important;
+        color: var(--text-main) !important;
+    }
+
+    .stApp [data-testid="stFileUploaderDropzone"] {
+        background: var(--bg-white) !important;
+        border: 1px solid var(--panel-border) !important;
+    }
+
+    .stApp [data-testid="stExpander"] {
+        background: color-mix(in srgb, var(--bg-white) 92%, transparent) !important;
+        border: 1px solid var(--panel-border) !important;
+        border-radius: 10px;
+    }
+
+    .stApp [data-testid="stSidebar"] * {
+        color: var(--text-main) !important;
+    }
+
+    small, .stCaption {
+        color: var(--text-soft) !important;
     }
 
     @keyframes fadeSlide {
